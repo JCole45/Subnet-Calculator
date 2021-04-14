@@ -98,8 +98,8 @@ function App() {
 
     let ips_holder = [];
 
-    let increment_value = arr[k_value - 1];
-    if (k_value && k_value <= 8 && increment_value !== undefined) {
+    let increment_value = arr[k - 1];
+    if (k && k <= 8 && increment_value !== undefined) {
       for (let y = 0; y <= 256; y += increment_value) {
         new_ip[octects[subnet_octect - 1]] = y;
         //setIpRange([...ip_range, new_ip]);
