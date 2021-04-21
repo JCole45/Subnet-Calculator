@@ -36,3 +36,31 @@
     transform: rotate(360deg);
   }
 }
+
+.input-field {
+  background: #ecf0f3;
+  padding: 10px;
+  padding-left: 20px;
+  height: 30px;
+  width: 50px;
+  font-size: 18px;
+  border: 0px solid black;
+  border-radius: 50px;
+  box-shadow: inset 6px 6px 6px #cbced1, inset -6px -6px 6px #ecf0f3;
+  margin-right: 10px;
+}
+
+.input-field:focus {
+  box-shadow: 6px 6px 6px #789bbe, inset -6px -6px 6px #ecf0f3;
+  outline: none;
+}
+
+.dot {
+  font-size: 50px;
+  margin: 0 5px 0 0;
+}
+
+.slash {
+  font-size: 40px;
+  margin: 0 5px 0 5px;
+}
