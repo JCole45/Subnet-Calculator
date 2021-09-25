@@ -3,11 +3,11 @@ import "./App.css";
 
 function App() {
   const [ip, setIp] = useState({
-    firstOctect: 123,
-    secondOctect: 5,
-    thirdOctect: 121,
-    finalOctect: 132,
-    subnet: 20,
+    firstOctect: 0,
+    secondOctect: 0,
+    thirdOctect: 0,
+    finalOctect: 0,
+    subnet: 0,
   });
   const [ipclass, setClass] = useState({ class: "", size: "", number: "" });
   const [host_bits, setHostBits] = useState();
