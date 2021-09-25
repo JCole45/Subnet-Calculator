@@ -41,8 +41,8 @@
   background: #ecf0f3;
   padding: 10px;
   padding-left: 20px;
-  height: 30px;
-  width: 50px;
+  height: 30px !important;
+  width: 50px !important;
   font-size: 18px;
   border: 0px solid black;
   border-radius: 50px;
@@ -63,4 +63,21 @@
 .slash {
   font-size: 40px;
   margin: 0 5px 0 5px;
+}
+
+.submit-button {
+  height: 30px !important;
+  width: 50px !important;
+  border-radius: 50px;
+  border: 0px solid black;
+  padding: 10px;
+  box-shadow: 6px 6px 6px #cbced1, inset -6px -6px 6px #ecf0f3;
+  outline: none;
+  cursor: pointer;
+  user-select: none;
+}
+
+.submit-button:active {
+  box-shadow: 6px 6px 6px #789bbe, inset -6px -6px 6px #ecf0f3;
+  user-select: none;
 }

@@ -17,7 +17,7 @@ function App() {
   const [network_ip, setNetworkIp] = useState([]);
   const [broadcast_ip, setBroadCastIp] = useState([]);
 
-  const arr = [128, 64, 32, 16, 8, 4, 2, 1];
+  const arr = [128, 64, 32, 16, 8, 4, 2, 1]
 
   const handleChange = (e) => {
     console.log(23 % 8);
@@ -27,7 +27,7 @@ function App() {
       intermediary[e.target.name] = Number(e.target.value);
       setIp(intermediary);
     }
-  };
+  }
 
   const handleDeleteNumberField = (e) => {
     let input_fields = document.getElementsByClassName("input-field");
@@ -40,12 +40,14 @@ function App() {
       setIp(intermediary);
     }
 
-    if (e.key === ".") {
+    if (e.key === "." && e.target.dataset.position < 4) {
       console.log(input_fields)
       console.log(e.target.dataset.position)
       input_fields[Number(e.target.dataset.position) + 1].focus()
     }
-  };
+  }
+
+
 
   const handleSubmit = () => {
     try {
@@ -218,14 +220,13 @@ function App() {
       <input
         onChange={handleChange}
         onKeyDown={handleDeleteNumberField}
-        type="number"
+        type="text"
         data-position={4}
         name="subnet"
         value={ip.subnet}
         className="input-field"
       />
-
-      <button onClick={handleSubmit}>Submit</button>
+      <input className="submit-button" onClick={handleSubmit} value="Submit"></input>
 
       <div style={{ display: "block", marginTop: "10px" }}>
         block size: {block_size}
