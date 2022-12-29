@@ -177,6 +177,8 @@ function App() {
 
   return (
     <div className="App">
+
+      <h3>Subnet Calculator</h3>
       <input
         onChange={handleChange}
         onKeyDown={handleDeleteNumberField}
@@ -231,6 +233,9 @@ function App() {
       <div style={{ display: "block", marginTop: "10px" }}>
         block size: {block_size}
       </div>
+      <div style={{ display: "block", marginTop: "10px" }}>
+        IP Class: {ipclass.class}
+      </div>
       <div style={{ display: "block" }}>host bits: {host_bits}</div>
       <div style={{ display: "block", marginBottom: "10px" }}>
         k value: {k_value}
@@ -265,6 +270,7 @@ function App() {
         })}
       </div>
 
+      <h5>Ip Range</h5>
       {ip_range.map((ip_) => {
         return (
           <div style={{ display: "block", marginBottom: "10px" }}>
