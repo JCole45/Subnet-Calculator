@@ -3,10 +3,10 @@ import "./App.css";
 
 function App() {
   const [ip, setIp] = useState({
-    firstOctect: 0,
-    secondOctect: 0,
-    thirdOctect: 0,
-    finalOctect: 0,
+    firstOctet: 0,
+    secondOctet: 0,
+    thirdOctet: 0,
+    finalOctet: 0,
     subnet: 0,
   });
   const [ipclass, setClass] = useState({ class: "", size: "", number: "" });
@@ -51,17 +51,17 @@ function App() {
 
   const handleSubmit = () => {
     try {
-      let octects = Object.keys(ip);
-      for (let i = 0; i < octects.length - 1; i++) {
-        if (ip[octects[i]] >= 256) {
+      let octets = Object.keys(ip);
+      for (let i = 0; i < octets.length - 1; i++) {
+        if (ip[octets[i]] >= 256) {
           let intermediary = { ...ip };
-          intermediary[octects[i]] = 255;
+          intermediary[octets[i]] = 255;
           setIp(intermediary);
         }
 
-        if (ip[octects[i]] < 0) {
+        if (ip[octets[i]] < 0) {
           let intermediary = { ...ip };
-          intermediary[octects[i]] = 0;
+          intermediary[octets[i]] = 0;
           setIp(intermediary);
         }
       }
@@ -75,11 +75,11 @@ function App() {
         setIp(intermediary);
       }
 
-      if (ip.firstOctect <= 126) {
+      if (ip.firstOctet <= 126) {
         setClass({ class: "A", size: 8, number: 0 });
-      } else if (ip.firstOctect <= 191) {
+      } else if (ip.firstOctet <= 191) {
         setClass({ class: "B", size: 16, number: 1 });
-      } else if (ip.firstOctect <= 223) {
+      } else if (ip.firstOctet <= 223) {
         setClass({ class: "C", size: 24, number: 2 });
       } else {
         setClass({ class: "D", size: 32, number: 3 });
@@ -94,30 +94,30 @@ function App() {
       let k = ip.subnet % 8;
       setKvalue(k);
 
-      let subnet_octect;
+      let subnet_octet;
       if (ip.subnet % 8 !== 0) {
-        subnet_octect = Math.floor(ip.subnet / 8) + 1;
+        subnet_octet = Math.floor(ip.subnet / 8) + 1;
       } else {
-        subnet_octect = Math.floor(ip.subnet / 8);
+        subnet_octet = Math.floor(ip.subnet / 8);
       }
 
       let new_ip = {
-        firstOctect: ip.firstOctect,
-        secondOctect: ip.secondOctect,
-        thirdOctect: ip.thirdOctect,
-        finalOctect: ip.finalOctect,
+        firstOctet: ip.firstOctet,
+        secondOctet: ip.secondOctet,
+        thirdOctet: ip.thirdOctet,
+        finalOctet: ip.finalOctet,
       };
 
-      //sets octect subnet occurs in, and all subsequent octects to 0
-      let b = subnet_octect;
+      //sets octect subnet occurs in, and all subsequent octets to 0
+      let b = subnet_octet;
       console.log("number for whileloop", b);
-      while (b < octects.length) {
-        new_ip[octects[b - 1]] = 0;
+      while (b < octets.length) {
+        new_ip[octets[b - 1]] = 0;
         b++;
       }
 
       console.log(new_ip);
-      console.log(subnet_octect);
+      console.log(subnet_octet);
       console.log("k: ", k);
       console.log("k_value: ", k_value);
       console.log("increment: " + arr[k_value - 1]);
@@ -127,7 +127,7 @@ function App() {
       let increment_value = arr[k - 1];
       if (k && k <= 8 && increment_value !== undefined) {
         for (let y = 0; y <= 256; y += increment_value) {
-          new_ip[octects[subnet_octect - 1]] = y;
+          new_ip[octets[subnet_octet - 1]] = y;
           //setIpRange([...ip_range, new_ip]);
           ips_holder.push({ ...new_ip });
           console.log(y);
@@ -145,26 +145,26 @@ function App() {
 
         console.log(ip1, ip2);
         console.log(
-          ip1[octects[subnet_octect - 1]],
-          ip[octects[subnet_octect - 1]],
-          ip2[octects[subnet_octect - 1]]
+          ip1[octets[subnet_octet - 1]],
+          ip[octets[subnet_octet - 1]],
+          ip2[octets[subnet_octet - 1]]
         );
 
         if (
-          ip[octects[subnet_octect - 1]] === ip1[octects[subnet_octect - 1]]
+          ip[octets[subnet_octet - 1]] === ip1[octets[subnet_octet - 1]]
         ) {
           setNetworkIp([ip1]);
           //setBroadCastIp
         }
         if (
-          ip[octects[subnet_octect - 1]] > ip1[octects[subnet_octect - 1]] &&
-          ip[octects[subnet_octect - 1]] < ip2[octects[subnet_octect - 1]]
+          ip[octets[subnet_octet - 1]] > ip1[octets[subnet_octet - 1]] &&
+          ip[octets[subnet_octet - 1]] < ip2[octets[subnet_octet - 1]]
         ) {
-          ip2[octects[subnet_octect - 1]] = ip2[octects[subnet_octect - 1]] - 1;
-          if (ip2[octects[subnet_octect]]) {
-            ip2[octects[subnet_octect]] = 255;
+          ip2[octets[subnet_octet - 1]] = ip2[octets[subnet_octet - 1]] - 1;
+          if (ip2[octets[subnet_octet]]) {
+            ip2[octets[subnet_octet]] = 255;
           }
-          //ip2[octects[subnet_octect]] && ip2[octects[subnet_octect]] = 255
+          //ip2[octets[subnet_octet]] && ip2[octets[subnet_octet]] = 255
           setNetworkIp([ip1]);
           setBroadCastIp([ip2]);
           break;
@@ -184,8 +184,8 @@ function App() {
         onKeyDown={handleDeleteNumberField}
         type="text"
         data-position={0}
-        name="firstOctect"
-        value={ip.firstOctect}
+        name="firstOctet"
+        value={ip.firstOctet}
         className="input-field"
       />
       <span className="dot">.</span>
@@ -194,8 +194,8 @@ function App() {
         onKeyDown={handleDeleteNumberField}
         type="text"
         data-position={1}
-        name="secondOctect"
-        value={ip.secondOctect}
+        name="secondOctet"
+        value={ip.secondOctet}
         className="input-field"
       />
       <span className="dot">.</span>
@@ -204,8 +204,8 @@ function App() {
         onKeyDown={handleDeleteNumberField}
         type="text"
         data-position={2}
-        name="thirdOctect"
-        value={ip.thirdOctect}
+        name="thirdOctet"
+        value={ip.thirdOctet}
         className="input-field"
       />
       <span className="dot">.</span>
@@ -214,8 +214,8 @@ function App() {
         onKeyDown={handleDeleteNumberField}
         type="text"
         data-position={3}
-        name="finalOctect"
-        value={ip.finalOctect}
+        name="finalOctet"
+        value={ip.finalOctet}
         className="input-field"
       />
       <span className="slash">/</span>
@@ -244,13 +244,13 @@ function App() {
         network ip:
         {network_ip.map((net_ip) => {
           return (
-            net_ip.firstOctect +
+            net_ip.firstOctet +
             " . " +
-            net_ip.secondOctect +
+            net_ip.secondOctet +
             " . " +
-            net_ip.thirdOctect +
+            net_ip.thirdOctet +
             " . " +
-            net_ip.finalOctect
+            net_ip.finalOctet
           );
         })}
       </div>
@@ -259,13 +259,13 @@ function App() {
         broadcast ip:
         {broadcast_ip.map((broad_ip) => {
           return (
-            broad_ip.firstOctect +
+            broad_ip.firstOctet +
             " . " +
-            broad_ip.secondOctect +
+            broad_ip.secondOctet +
             " . " +
-            broad_ip.thirdOctect +
+            broad_ip.thirdOctet +
             " . " +
-            broad_ip.finalOctect
+            broad_ip.finalOctet
           );
         })}
       </div>
@@ -274,13 +274,13 @@ function App() {
       {ip_range.map((ip_) => {
         return (
           <div style={{ display: "block", marginBottom: "10px" }}>
-            {ip_.firstOctect +
+            {ip_.firstOctet +
               " . " +
-              ip_.secondOctect +
+              ip_.secondOctet +
               " . " +
-              ip_.thirdOctect +
+              ip_.thirdOctet +
               " . " +
-              ip_.finalOctect}
+              ip_.finalOctet}
           </div>
         );
       })}
